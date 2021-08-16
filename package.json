@@ -1,0 +1,35 @@
+{
+  "name": "vue-manage-system",
+  "version": "4.2.0",
+  "private": true,
+  "scripts": {
+    "clean": "rm -rf openapi_v1_web && rm -rf openapi_v1_web.tar.gz",
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build --mode $node_env",
+    "gz": "npm run clean && npm run build  &&  tar -zcvf openapi_v1_web.tar.gz openapi_v1_web"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "babel-polyfill": "^6.26.0",
+    "echarts": "^5.1.2",
+    "element-ui": "^2.15.5",
+    "file-saver": "^2.0.5",
+    "js-cookie": "^2.2.1",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.1",
+    "vue": "^2.6.10",
+    "vue-count-to": "^1.0.13",
+    "vue-i18n": "^8.10.0",
+    "vue-router": "^3.0.3",
+    "vuetify": "^2.5.6",
+    "vuex": "^3.6.2",
+    "ws": "^8.1.0",
+    "xlsx": "^0.17.0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.9.0",
+    "@vue/cli-service": "^3.9.0",
+    "script-loader": "^0.7.2",
+    "vue-template-compiler": "^2.6.10"
+  }
+}
