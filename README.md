@@ -7,8 +7,6 @@ npm install
 npm run serve
 打包:
 npm run build
-生成tar.gz 包
-npm run gz
 ```
 ```
 目录树

@@ -1,12 +1,10 @@
 {
-  "name": "vue-manage-system",
-  "version": "4.2.0",
+  "name": "go-docker-web",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
-    "clean": "rm -rf openapi_v1_web && rm -rf openapi_v1_web.tar.gz",
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build --mode $node_env",
-    "gz": "npm run clean && npm run build  &&  tar -zcvf openapi_v1_web.tar.gz openapi_v1_web"
+    "build": "vue-cli-service build",
   },
   "dependencies": {
     "axios": "^0.18.0",
