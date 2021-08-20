@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { getToken, removeToken } from './auth';
+import router from '../router';
 
 const service = axios.create({
     // baseURL: process.env.VUE_APP_BASE_URL,
@@ -43,9 +44,9 @@ service.interceptors.response.use(
         if ((error.response.status === 401) && window.location.hash !== '#/login') {
             localStorage.removeItem('ms_username');
             removeToken();
-            window.location = '/';
+            router.push('/');
         } else if (error.response.status === 403) {
-            window.location = '/403';
+            router.push('/403');
         }
         return Promise.reject(error.response.data);
     }

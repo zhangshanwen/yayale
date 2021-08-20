@@ -48,10 +48,11 @@
                     if (valid) {
                         login(this.param.mobile, this.param.password).then(async res => {
                             localStorage.setItem('ms_mobile', this.param.mobile);
-                            setToken(res.data.authorization);
-                            await this.$router.push('/servers');
+                            console.log(res.data)
+                            setToken(res.data.Authorization);
+                            await this.$router.push('/users');
                         }).catch(err => {
-                            this.$message.error(this.$t(`code.${err.code}`));
+                            this.$message.error(this.$t(`code.${err.msg}`));
                         });
                     }
                 });

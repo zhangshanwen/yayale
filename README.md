@@ -1,6 +1,4 @@
 ### 后台管理系统
-[api](https://github.com/zhangshanwen/splie)
-[docker服务](https://github.com/zhangshanwen/plug)
 ```
 运行:
 npm install 
