@@ -1,7 +1,6 @@
 ### 后台管理系统
-[https://github.com/zhangshanwen/splie](api)
-[https://github.com/zhangshanwen/plug](docker服务)
 ```
+cp .env.example .env.production
 运行:
 npm install 
 npm run serve

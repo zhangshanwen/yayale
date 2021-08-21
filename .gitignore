@@ -6,6 +6,8 @@ example.html
 favicon.ico
 # local env files
 .env.local
+.env.development
+.env.production
 .env.*.local
 
 # Log files
