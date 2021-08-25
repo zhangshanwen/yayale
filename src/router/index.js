@@ -26,18 +26,14 @@ export default new Router({
                     meta: { title: '403' }
                 },
                 {
-                    path: '/servers',
-                    component: () => import(/* webpackChunkName: "donate" */ '../components/page/Servers'),
-                    meta: { title: 'servers' }
+                    path: '/users',
+                    component: () => import(/* webpackChunkName: "donate" */ '../components/page/Users'),
+                    meta: { title: 'users' }
                 },
                 {
                     path: '/dashboard',
                     component: () => import(/* webpackChunkName: "donate" */ '../components/page/Dashboard'),
                     meta: { title: 'dashboard' }
-                }, {
-                    path: '/images',
-                    component: () => import(/* webpackChunkName: "donate" */ '../components/page/Image'),
-                    meta: { title: 'images' }
                 }
             ]
         },

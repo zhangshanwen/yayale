@@ -17,37 +17,71 @@
                         <i class="el-icon-caret-bottom"></i>
                     </span>
                     <el-dropdown-menu slot="dropdown">
-                        <el-dropdown-item divided command="loginout">{{$t('loginout')}}</el-dropdown-item>
+                        <el-dropdown-item divided command="loginout">{{$t('i18n.loginout')}}</el-dropdown-item>
+                        <el-dropdown-item divided command="changePassword">{{$t('i18n.changePassword')}}
+                        </el-dropdown-item>
                     </el-dropdown-menu>
                 </el-dropdown>
             </div>
         </div>
+        <el-dialog
+                :title="$t('i18n.changePassword')"
+                :visible.sync="changePasswordVisible"
+                width="30%"
+                center>
+            <el-form :model="form" ref="changePassword" :rules="rules">
+                <el-form-item :label="$t('field.password')">
+                    <el-input v-model="form.password"></el-input>
+                </el-form-item>
+
+            </el-form>
+
+            <el-button @click="saveVisible = false">{{$t('i18n.cancel')}}</el-button>
+            <el-button type="primary" :disabled="changePasswordDisable" @click="onchangePassword()">
+                {{$t('i18n.confirm')}}
+            </el-button>
+        </el-dialog>
     </div>
+
 </template>
 <script>
+    import { logout } from '../../api/login';
+    import { changePassword } from '../../api/users';
     import bus from '../common/bus';
+    import { removeToken } from '../../utils/auth';
 
     export default {
         data() {
             return {
                 collapse: false,
                 fullscreen: false,
-                name: 'admin'
+                changePasswordVisible: false,
+                name: 'admin',
+                form: {
+                    'password': ''
+                },
+                rules: []
             };
         },
         computed: {
             username() {
-                let username = localStorage.getItem('ms_username');
+                let username = localStorage.getItem('ms_mobile');
                 return username ? username : this.name;
+            },
+            changePasswordDisable() {
+                return this.form.password === '';
             }
         },
         methods: {
             // 用户名下拉菜单选择事件
             handleCommand(command) {
                 if (command === 'loginout') {
-                    localStorage.removeItem('ms_username');
-                    localStorage.removeItem('ms_token');
+                    logout();
+                    localStorage.removeItem('ms_mobile');
+                    removeToken();
                     this.$router.push('/login');
+                } else if (command === 'changePassword') {
+                    this.changePasswordVisible = true;
                 }
             },
             changeLanguage() {
@@ -63,6 +97,14 @@
             },
             changeLocale(type) {
                 this.$locale = type;
+            },
+            onchangePassword() {
+                changePassword(this.form.password).then(res => {
+                    removeToken();
+                    this.$router.push('/login');
+                }).catch(err => {
+                    this.$message.error(this.$t(`code.${err.msg}`));
+                });
             }
         },
         mounted() {

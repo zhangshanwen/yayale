@@ -26,20 +26,11 @@
                 collapse: false,
                 items: [
                     {
-                        icon: 'el-icon-s-data',
-                        index: 'servers',
-                        title: 'servers'
+                        icon: 'el-icon-user',
+                        index: 'users',
+                        title: 'users'
                     },
-                    {
-                        icon: 'el-icon-s-data',
-                        index: 'dashboard',
-                        title: 'dashboard'
-                    },
-                    {
-                        icon: 'el-icon-s-data',
-                        index: 'images',
-                        title: 'images'
-                    }
+
                 ]
             };
 

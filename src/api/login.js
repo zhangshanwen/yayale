@@ -4,10 +4,17 @@ import request from '../utils/request';
 export function login(mobile, password) {
     return request({
         method: 'post',
-        url: `/api/v1/user/login`,
+        url: `/api/user/login`,
         data: {
-            mobile: mobile,
+            key: mobile,
             password: password
         }
+    });
+}
+
+export function logout() {
+    return request({
+        method: 'delete',
+        url: `/api/user/logout`
     });
 }

@@ -17,12 +17,18 @@ const zh = {
         'VirtualSize': '虚拟占用大小',
         'Name': '名称',
         'StarCount': 'starts',
-        'Description': '描述'
+        'Description': '描述',
+        'last_login_time': '上次登录时间',
+        'user_name': '用户名',
+        'mobile': '手机号',
+        'password': '密码',
+        'verifyPassword':'确认密码'
     },
     title: {
         'servers': '服务列表',
         'dashboard': '仪表盘',
-        'images': '镜像列表'
+        'images': '镜像列表',
+        'users': '用户列表'
     },
     i18n: {
         'new': '新增',
@@ -39,7 +45,13 @@ const zh = {
         'result': '结果',
         'tag': '标签',
         'pull': '拉取',
-        'processing': '进度'
+        'processing': '进度',
+        'resetPassword': '重置密码',
+        'plsInputUsername': '请输入用户名',
+        'plsInputMobile': '请输入手机号',
+        'plsInputPassword': '请输入密码',
+        'loginout': '登出',
+        'changePassword': '修改密码'
 
     },
     code: {
@@ -54,8 +66,10 @@ const zh = {
         '203001': '登录失败',
         '203002': '生成token失败',
         '203003': '账号/密码错误',
-        '204001': '连接服务错误'
-
+        '204001': '连接服务错误',
+        'param_err': '参数错误',
+        'account_password_error': '账号或密码错误',
+        'password_not_the_same':'密码不能相同'
     }
 };
 
