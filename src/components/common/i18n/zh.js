@@ -40,7 +40,8 @@ const zh = {
         'images': '镜像列表',
         'users': '用户列表',
         'goods': '商品列表',
-        'login':'登录'
+        'login':'登录',
+        'goodsCategory':"商品分类"
     },
     i18n: {
         'new': '新增',
@@ -71,7 +72,8 @@ const zh = {
         'threeMonthAfter': '三个月后',
         'halfYearAfter': '半年后',
         'oneYearAfter': '一年后',
-        'twoYearAfter': '两年后'
+        'twoYearAfter': '两年后',
+        'goodsCategory':"商品分类"
 
     },
     code: {
