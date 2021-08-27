@@ -107,7 +107,7 @@
                     <el-input v-model="form.specification"></el-input>
                 </el-form-item>
                 <el-form-item :label="$t('field.unit')" prop="unit">
-                    <el-input-number v-model="form.unit"></el-input-number>
+                    <el-input v-model="form.unit"></el-input>
                 </el-form-item>
                 <el-form-item v-if="isEdit" :label="$t('field.inventory_count')" prop="inventory_counts">
                     <el-input-number disabled v-model="form.inventory_count"></el-input-number>
@@ -179,7 +179,7 @@
                     category_id: '',
                     expired_time: '',
                     specification: '',
-                    unit: 0
+                    unit: ''
                 },
                 tableData: [],
                 rules: {
@@ -254,8 +254,8 @@
                     number: '12311d1',
                     category_id: '',
                     expired_time: '',
-                    specification: 0,
-                    unit: 0
+                    specification: '',
+                    unit: ''
                 };
                 this.saveVisible = true;
                 this.isEdit = false;
