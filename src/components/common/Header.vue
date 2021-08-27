@@ -17,7 +17,7 @@
                         <i class="el-icon-caret-bottom"></i>
                     </span>
                     <el-dropdown-menu slot="dropdown">
-                        <el-dropdown-item divided command="loginout">{{$t('i18n.loginout')}}</el-dropdown-item>
+                        <el-dropdown-item divided command="logout">{{$t('i18n.logout')}}</el-dropdown-item>
                         <el-dropdown-item divided command="changePassword">{{$t('i18n.changePassword')}}
                         </el-dropdown-item>
                     </el-dropdown-menu>
@@ -75,7 +75,7 @@
         methods: {
             // 用户名下拉菜单选择事件
             handleCommand(command) {
-                if (command === 'loginout') {
+                if (command === 'logout') {
                     logout();
                     localStorage.removeItem('ms_mobile');
                     removeToken();

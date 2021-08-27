@@ -30,6 +30,11 @@
                         index: 'users',
                         title: 'users'
                     },
+                    {
+                        icon: 'el-icon-goods',
+                        index: 'goods',
+                        title: 'goods'
+                    },
 
                 ]
             };

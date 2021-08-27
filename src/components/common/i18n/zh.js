@@ -22,13 +22,25 @@ const zh = {
         'user_name': '用户名',
         'mobile': '手机号',
         'password': '密码',
-        'verifyPassword':'确认密码'
+        'verifyPassword': '确认密码',
+        'name': '名称',
+        'producer': '生产商',
+        'number': '药械准字号',
+        'specification': '规格信息',
+        'unit': '单位',
+        'inventory_count': '库存数量',
+        'expired_time': '有效日期',
+        'category_id': '分类',
+        'type': '分类'
+
     },
     title: {
         'servers': '服务列表',
         'dashboard': '仪表盘',
         'images': '镜像列表',
-        'users': '用户列表'
+        'users': '用户列表',
+        'goods': '商品列表',
+        'login':'登录'
     },
     i18n: {
         'new': '新增',
@@ -48,10 +60,18 @@ const zh = {
         'processing': '进度',
         'resetPassword': '重置密码',
         'plsInputUsername': '请输入用户名',
+        'plsInputName': '请输入名称',
+        'plsChooseDate': '请选择日期',
+        'plsChoose': '请选择',
         'plsInputMobile': '请输入手机号',
         'plsInputPassword': '请输入密码',
-        'loginout': '登出',
-        'changePassword': '修改密码'
+        'logout': '登出',
+        'changePassword': '修改密码',
+        'oneMonthAfter': '一个月后',
+        'threeMonthAfter': '三个月后',
+        'halfYearAfter': '半年后',
+        'oneYearAfter': '一年后',
+        'twoYearAfter': '两年后'
 
     },
     code: {
@@ -69,7 +89,7 @@ const zh = {
         '204001': '连接服务错误',
         'param_err': '参数错误',
         'account_password_error': '账号或密码错误',
-        'password_not_the_same':'密码不能相同'
+        'password_not_the_same': '密码不能相同'
     }
 };
 
