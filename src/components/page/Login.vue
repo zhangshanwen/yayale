@@ -5,14 +5,14 @@
             <el-form @submit.native.prevent :model="param" :rules="rules" ref="login" label-width="0px"
                      class="ms-content">
                 <el-form-item prop="mobile">
-                    <el-input v-model="param.mobile" placeholder="mobile">
+                    <el-input v-model="param.mobile" :placeholder="$t('i18n.plsInputUserNameMobile')">
                         <el-button slot="prepend" icon="el-icon-lx-people"></el-button>
                     </el-input>
                 </el-form-item>
                 <el-form-item prop="password">
                     <el-input
                             type="password"
-                            placeholder="password"
+                            :placeholder="$t('i18n.plsInputPassword')"
                             v-model="param.password">
                         <el-button slot="prepend" icon="el-icon-lx-lock"></el-button>
                     </el-input>
