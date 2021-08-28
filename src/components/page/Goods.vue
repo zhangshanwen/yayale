@@ -1,6 +1,20 @@
 <template>
     <div>
         <div class="contain">
+            <el-form :model="searchForm" inline>
+                <el-form-item :label="$t('field.category_id')">
+                    <el-select v-model="searchForm.category_id" :placeholder="$t('i18n.plsChoose')">
+                        <el-option :label="$t('i18n.all')" :value="0"></el-option>
+                        <el-option
+                                v-for="item in options"
+                                :key="item.value"
+                                :label="item.type"
+                                :value="item.id">
+                        </el-option>
+                    </el-select>
+                </el-form-item>
+                <el-button type="primary" @click="loadData()">{{$t('i18n.search')}}</el-button>
+            </el-form>
             <el-button type="primary" @click="clickNewData()">{{$t('i18n.new')}}</el-button>
             <el-button type="primary" @click="clickNewCategory()">{{$t('i18n.goodsCategory')}}</el-button>
             <el-divider></el-divider>
@@ -59,6 +73,14 @@
                                  property="created_time"
                                  :formatter="formatterTime"
                                  align="center">
+                </el-table-column>
+                <el-table-column :label="$t('i18n.outInPut')"
+                                 align="center">
+                    <template slot-scope="scope">
+                        <el-button type="text" @click=clickLoadRecordData(scope.row.id)>{{$t('i18n.record')}}
+                        </el-button>
+                        <el-button type="text" @click=clickOutInput(scope.row.id)>{{$t('i18n.outInPut')}}</el-button>
+                    </template>
                 </el-table-column>
                 <el-table-column :label="$t('i18n.operate')"
                                  align="center">
@@ -143,6 +165,104 @@
                 <el-button type="primary" @click="deleteOne()">{{$t('i18n.confirm')}}</el-button>
             </div>
         </el-dialog>
+
+        <el-dialog :title="$t('i18n.outInPut')" :visible.sync="record.recordVisible"
+                   width="30%">
+            <el-form :model="record">
+                <el-form-item :label="$t('field.inventory_count')" prop="inventory_count">
+                    <el-input-number :min="0" :precision="0" v-model="record.inventory_count"></el-input-number>
+                </el-form-item>
+                <el-form-item>
+                    <el-radio v-model="record.state" :label="1">{{$t('i18n.input')}}</el-radio>
+                    <el-radio v-model="record.state" :label="-1">{{$t('i18n.output')}}</el-radio>
+                </el-form-item>
+                <el-form-item :label="$t('field.remake')" prop="remake">
+                    <el-input v-model="record.remake"></el-input>
+                </el-form-item>
+
+            </el-form>
+            <div slot="footer" class="dialog-footer">
+                <el-button type="primary" @click="record.recordVisible = false">{{$t('i18n.cancel')}}</el-button>
+                <el-button type="primary" @click="creteRecord()">{{$t('i18n.confirm')}}</el-button>
+            </div>
+        </el-dialog>
+        <el-dialog :title="$t('title.record')" :visible.sync="records.recordVisible">
+            <el-form :model="records" inline>
+                <el-form-item :label="$t('field.state')">
+                    <el-select v-model="records.state" :placeholder="$t('i18n.plsChoose')">
+                        <el-option
+                                v-for="item in recordsOptions"
+                                :key="item.value"
+                                :label="item.label"
+                                :value="item.value">
+                        </el-option>
+                    </el-select>
+                </el-form-item>
+                <el-button type="primary" @click="loadRecordData()">{{$t('i18n.search')}}</el-button>
+            </el-form>
+            <el-divider></el-divider>
+            <el-table
+                    v-loading="records.loading"
+                    :data="records.tableData"
+                    border
+                    stripe
+                    highlight-current-row
+                    header-cell-class-name="table-header-class"
+                    style="width:100%">
+                <el-table-column :label="$t('field.id')"
+                                 property="id"
+                                 align="center">
+                </el-table-column>
+                <el-table-column :label="$t('field.inventory_count')"
+                                 property="inventory_count"
+                                 align="center">
+                </el-table-column>
+                <el-table-column :label="$t('field.goods_name')"
+                                 property="name"
+                                 align="center">
+                </el-table-column>
+                <el-table-column :label="$t('field.state')"
+                                 property="state"
+                                 align="center">
+                </el-table-column>
+
+                <el-table-column :label="$t('field.remark')"
+                                 property="remark"
+                                 align="center">
+                </el-table-column>
+                <el-table-column :label="$t('field.operator')"
+                                 property="user_name"
+                                 align="center">
+                </el-table-column>
+                <el-table-column :label="$t('field.operation_time')"
+                                 property="operation_time"
+                                 :formatter="formatterTime"
+                                 align="center">
+                </el-table-column>
+                <el-table-column :label="$t('field.created_time')"
+                                 property="created_time"
+                                 :formatter="formatterTime"
+                                 align="center">
+                </el-table-column>
+            </el-table>
+            <el-row>
+                <el-col :span="24">
+                    <div class="pagination">
+                        <el-pagination
+                                v-if='recordPaginations.total > 0'
+                                :page-sizes="recordPaginations.pageSizes"
+                                :page-size="recordPaginations.pageSize"
+                                :layout="recordPaginations.layout"
+                                :total="recordPaginations.total"
+                                :current-page='recordPaginations.pageIndex'
+                                @current-change='handleCurrentChange'
+                                @size-change='handleSizeChange'>
+                        </el-pagination>
+                    </div>
+                </el-col>
+            </el-row>
+        </el-dialog>
+
     </div>
 
 
@@ -151,6 +271,7 @@
 <script>
     import { getGoods, goodsCreate, goodsEdit, goodsDelete } from '../../api/goods';
     import { getCategory, categoryCreate, categoryEdit, categoryDelete } from '../../api/goodsCategory';
+    import { getRecord, recordCreate } from '../../api/record';
     import { FormatterTime, FormatterDate } from '../../utils/time';
 
     export default {
@@ -165,12 +286,24 @@
                     layout: 'total, sizes, prev, pager, next, jumper',
                     sort: 0,
                     order: 'id'
-
+                },
+                recordPaginations: {
+                    total: 0,
+                    pageIndex: 1,
+                    pageSize: 20,
+                    pageSizes: [10, 20, 50, 100, 300, 1000],
+                    layout: 'total, sizes, prev, pager, next, jumper',
+                    sort: 0,
+                    order: 'id'
                 },
                 loading: false,
                 saveVisible: false,
                 delVisible: false,
                 isEdit: false,
+                searchForm: {
+                    category_id: 0
+
+                },
                 form: {
                     id: '',
                     name: '',
@@ -180,6 +313,25 @@
                     expired_time: '',
                     specification: '',
                     unit: ''
+                },
+                record: {
+                    goods_id: 0,
+                    state: 1,
+                    remake: '',
+                    inventory_count: 0,
+                    recordVisible: false
+                },
+                recordsOptions: [
+                    { label: this.$t('i18n.all'), value: 0 },
+                    { label: this.$t('i18n.input'), value: 1 },
+                    { label: this.$t('i18n.output'), value: -1 }
+                ],
+                records: {
+                    tableData: [],
+                    loading: false,
+                    state: 0,
+                    goods_id: 0,
+                    recordVisible: false
                 },
                 tableData: [],
                 rules: {
@@ -233,7 +385,7 @@
         methods: {
             async loadData() {
                 this.loading = true;
-                getGoods(this.paginations.pageIndex, this.paginations.pageSize, this.paginations.sort, this.paginations.order).then(
+                getGoods(this.paginations, this.searchForm).then(
                     (res) => {
                         this.tableData = res.data.list;
                         this.paginations.total = res.data.pagination.total;
@@ -246,8 +398,26 @@
                 });
 
             },
+            async clickLoadRecordData(goods_id) {
+                this.records.goods_id = goods_id;
+                this.records.recordVisible = true;
+                await this.loadRecordData();
+            },
+            async loadRecordData() {
+                this.records.loading = true;
+                getRecord(this.recordPaginations, this.records).then(
+                    (res) => {
+                        this.records.tableData = res.data.list;
+                        this.recordPaginations.total = res.data.pagination.total;
+                    }
+                ).catch((err => {
+                    this.$message.error(this.$t(`code.${err.msg}`));
+
+                })).finally(() => {
+                    this.records.loading = false;
+                });
+            },
             clickNewData() {
-                this.loadCategory();
                 this.form = {
                     name: '板蓝根',
                     producer: '东南大仓',
@@ -264,7 +434,6 @@
                 this.$router.push('/goodsCategory');
             },
             async clickEditData(row) {
-                await this.loadCategory();
                 const date = new Date();
                 date.setTime(row.expired_time * 1000);
                 this.form = {
@@ -288,9 +457,29 @@
                 };
                 this.delVisible = true;
             },
+            clickOutInput(goods_id) {
+                this.record = {
+                    goods_id: goods_id,
+                    state: 1,
+                    remake: '',
+                    inventory_count: 1,
+                    recordVisible: true
+
+                };
+            },
             newData() {
                 goodsCreate(this.form).then((res) => {
                         this.saveVisible = false;
+                        this.loadData();
+                    }
+                ).catch((err => {
+                    this.$message.error(this.$t(`code.${err.msg}`));
+
+                }));
+            },
+            creteRecord() {
+                recordCreate(this.record).then((res) => {
+                        this.record.recordVisible = false;
                         this.loadData();
                     }
                 ).catch((err => {
@@ -339,6 +528,16 @@
                 this.paginations.pageIndex = page;
                 await this.loadData();
             },
+            // 每页多少条切换
+            async handleRecordSizeChange(pageSize) {
+                this.recordPaginations.pageSize = pageSize;
+                await this.loadRecordData();
+            },
+            // 上下分页
+            async handleRecordCurrentChange(page) {
+                this.recordPaginations.pageIndex = page;
+                await this.loadRecordData();
+            },
             formatterTime(row, column, cellValue, index) {
                 return FormatterTime(row, column, cellValue, index);
             },
@@ -347,6 +546,7 @@
             }
         },
         created() {
+            this.loadCategory();
             this.loadData();
         },
         computed: {

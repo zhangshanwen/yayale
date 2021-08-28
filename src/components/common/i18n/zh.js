@@ -31,7 +31,13 @@ const zh = {
         'inventory_count': '库存数量',
         'expired_time': '有效日期',
         'category_id': '分类',
-        'type': '分类'
+        'type': '分类',
+        'remake': '备注',
+        'goods_name': '商品名称',
+        'operation_time': '操作时间',
+        'operator': '操作人',
+        'state': '状态',
+        'remark': '备注',
 
     },
     title: {
@@ -40,8 +46,9 @@ const zh = {
         'images': '镜像列表',
         'users': '用户列表',
         'goods': '商品列表',
-        'login':'登录',
-        'goodsCategory':"商品分类"
+        'record': '出入库记录',
+        'login': '登录',
+        'goodsCategory': '商品分类'
     },
     i18n: {
         'new': '新增',
@@ -73,7 +80,12 @@ const zh = {
         'halfYearAfter': '半年后',
         'oneYearAfter': '一年后',
         'twoYearAfter': '两年后',
-        'goodsCategory':"商品分类"
+        'goodsCategory': '商品分类',
+        'outInPut': '出入库',
+        'input': '入库',
+        'output': '出库',
+        'all': '全部',
+        'record': '记录',
 
     },
     code: {
@@ -91,7 +103,8 @@ const zh = {
         '204001': '连接服务错误',
         'param_err': '参数错误',
         'account_password_error': '账号或密码错误',
-        'password_not_the_same': '密码不能相同'
+        'password_not_the_same': '密码不能相同',
+        'inventory_count_lack': '库存不足'
     }
 };
 

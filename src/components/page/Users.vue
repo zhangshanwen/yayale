@@ -1,6 +1,7 @@
 <template>
     <div>
         <div class="contain">
+            <el-button type="primary" @click="loadData()">{{$t('i18n.search')}}</el-button>
             <el-button type="primary" @click="clickNewData()">{{$t('i18n.new')}}</el-button>
             <el-divider></el-divider>
             <el-table

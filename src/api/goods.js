@@ -1,15 +1,16 @@
 import request from '../utils/request';
 
 
-export function getGoods(page, page_size, sort, order) {
+export function getGoods(paginations, form) {
     return request({
         method: 'get',
         url: `/api/goods`,
         params: {
-            page: page,
-            page_size: page_size,
-            sort: sort,
-            order: order
+            page: paginations.page,
+            page_size: paginations.page_size,
+            sort: paginations.sort,
+            order: paginations.order,
+            category_id: form.category_id
         }
     });
 }
@@ -25,7 +26,7 @@ export function goodsCreate(form) {
             category_id: form.category_id,
             expired_time: form.expired_time.getTime() / 1000,
             specification: form.specification,
-            unit: form.unit,
+            unit: form.unit
         }
     });
 }
@@ -41,7 +42,7 @@ export function goodsEdit(form) {
             category_id: form.category_id,
             expired_time: form.expired_time.getTime() / 1000,
             specification: form.specification,
-            unit: form.unit,
+            unit: form.unit
         }
     });
 }

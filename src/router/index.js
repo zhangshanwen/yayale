@@ -44,6 +44,11 @@ export default new Router({
                     path: '/goodsCategory',
                     component: () => import(/* webpackChunkName: "donate" */ '../components/page/GoodsCategory'),
                     meta: { title: 'goodsCategory' }
+                },
+                {
+                    path: '/record',
+                    component: () => import(/* webpackChunkName: "donate" */ '../components/page/Record'),
+                    meta: { title: 'record' }
                 }
             ]
         },

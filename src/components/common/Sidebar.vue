@@ -35,6 +35,11 @@
                         index: 'goods',
                         title: 'goods'
                     },
+                    {
+                        icon: 'el-icon-s-order',
+                        index: 'record',
+                        title: 'record'
+                    }
 
                 ]
             };
