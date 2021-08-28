@@ -10,7 +10,8 @@ export function getGoods(paginations, form) {
             page_size: paginations.page_size,
             sort: paginations.sort,
             order: paginations.order,
-            category_id: form.category_id
+            category_id: form.category_id,
+            keyword: form.keyword,
         }
     });
 }

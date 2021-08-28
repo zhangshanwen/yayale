@@ -2,6 +2,9 @@
     <div>
         <div class="contain">
             <el-form :model="searchForm" inline>
+                <el-form-item :label="$t('i18n.keyword')">
+                    <el-input v-model="searchForm.keyword"></el-input>
+                </el-form-item>
                 <el-form-item :label="$t('field.category_id')">
                     <el-select v-model="searchForm.category_id" :placeholder="$t('i18n.plsChoose')">
                         <el-option :label="$t('i18n.all')" :value="0"></el-option>
@@ -223,6 +226,7 @@
                 </el-table-column>
                 <el-table-column :label="$t('field.state')"
                                  property="state"
+                                 :formatter="formatterState"
                                  align="center">
                 </el-table-column>
 
@@ -255,8 +259,8 @@
                                 :layout="recordPaginations.layout"
                                 :total="recordPaginations.total"
                                 :current-page='recordPaginations.pageIndex'
-                                @current-change='handleCurrentChange'
-                                @size-change='handleSizeChange'>
+                                @current-change='handleRecordCurrentChange'
+                                @size-change='handleRecordSizeChange'>
                         </el-pagination>
                     </div>
                 </el-col>
@@ -301,7 +305,8 @@
                 delVisible: false,
                 isEdit: false,
                 searchForm: {
-                    category_id: 0
+                    category_id: 0,
+                    keyword:''
 
                 },
                 form: {
@@ -543,6 +548,13 @@
             },
             formatterDate(row, column, cellValue, index) {
                 return FormatterDate(row, column, cellValue, index);
+            },
+            formatterState(row, column, cellValue, index) {
+                if (cellValue === -1) {
+                    return this.$t('i18n.input');
+                } else {
+                    return this.$t('i18n.output');
+                }
             }
         },
         created() {

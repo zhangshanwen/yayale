@@ -38,6 +38,8 @@
                 </el-table-column>
                 <el-table-column :label="$t('field.state')"
                                  property="state"
+                                 :formatter="formatterState"
+
                                  align="center">
                 </el-table-column>
 
@@ -144,6 +146,13 @@
             },
             formatterDate(row, column, cellValue, index) {
                 return FormatterDate(row, column, cellValue, index);
+            },
+            formatterState(row, column, cellValue, index) {
+                if (cellValue === -1) {
+                    return this.$t('i18n.input');
+                } else {
+                    return this.$t('i18n.output');
+                }
             }
         },
         created() {

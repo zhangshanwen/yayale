@@ -86,6 +86,7 @@ const zh = {
         'output': '出库',
         'all': '全部',
         'record': '记录',
+        'keyword': '关键字',
 
     },
     code: {
