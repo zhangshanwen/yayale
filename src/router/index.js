@@ -12,6 +12,10 @@ export default new Router({
     routes: [
         {
             path: '/',
+            redirect: '/users'
+        },
+        {
+            path: '/',
             component: () => import(/* webpackChunkName: "home" */ '../components/common/Home.vue'),
             meta: { title: 'home' },
             children: [
