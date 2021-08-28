@@ -11,11 +11,11 @@
         <div class="tags-close-box">
             <el-dropdown @command="handleTags">
                 <el-button size="mini" type="primary">
-                    {{$t('tags')}}<i class="el-icon-arrow-down el-icon--right"></i>
+                    {{$t('i18n.tags')}}<i class="el-icon-arrow-down el-icon--right"></i>
                 </el-button>
                 <el-dropdown-menu size="small" slot="dropdown">
-                    <el-dropdown-item command="other">{{$t('closeOther')}}</el-dropdown-item>
-                    <el-dropdown-item command="all">{{$t('closeAll')}}</el-dropdown-item>
+                    <el-dropdown-item command="other">{{$t('i18n.closeOther')}}</el-dropdown-item>
+                    <el-dropdown-item command="all">{{$t('i18n.closeAll')}}</el-dropdown-item>
                 </el-dropdown-menu>
             </el-dropdown>
         </div>

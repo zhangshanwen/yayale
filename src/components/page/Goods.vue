@@ -3,7 +3,8 @@
         <div class="contain">
             <el-form :model="searchForm" inline>
                 <el-form-item :label="$t('i18n.keyword')">
-                    <el-input v-model="searchForm.keyword"></el-input>
+                    <el-input v-model="searchForm.keyword"
+                              :placeholder="$t('i18n.plsInputNameProducerNumber')"></el-input>
                 </el-form-item>
                 <el-form-item :label="$t('field.category_id')">
                     <el-select v-model="searchForm.category_id" :placeholder="$t('i18n.plsChoose')">
@@ -306,7 +307,7 @@
                 isEdit: false,
                 searchForm: {
                     category_id: 0,
-                    keyword:''
+                    keyword: ''
 
                 },
                 form: {

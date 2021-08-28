@@ -65,7 +65,7 @@
         },
         computed: {
             username() {
-                let username = localStorage.getItem('ms_mobile');
+                let username = localStorage.getItem('ms_user_name');
                 return username ? username : this.name;
             },
             changePasswordDisable() {
@@ -74,12 +74,12 @@
         },
         methods: {
             // 用户名下拉菜单选择事件
-            handleCommand(command) {
+            async handleCommand(command) {
                 if (command === 'logout') {
-                    logout();
-                    localStorage.removeItem('ms_mobile');
-                    removeToken();
-                    this.$router.push('/login');
+                    await logout();
+                    localStorage.removeItem('ms_user_name');
+                    await removeToken();
+                    await this.$router.push('/login');
                 } else if (command === 'changePassword') {
                     this.changePasswordVisible = true;
                 }

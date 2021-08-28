@@ -51,6 +51,7 @@ const zh = {
         'goodsCategory': '商品分类'
     },
     i18n: {
+        'login': '登录',
         'new': '新增',
         'edit': '编辑',
         'operate': '操作',
@@ -68,6 +69,7 @@ const zh = {
         'processing': '进度',
         'resetPassword': '重置密码',
         'plsInputUsername': '请输入用户名',
+        'plsInputUserNameMobile': '请输入用户名/手机号',
         'plsInputName': '请输入名称',
         'plsChooseDate': '请选择日期',
         'plsChoose': '请选择',
@@ -86,7 +88,12 @@ const zh = {
         'output': '出库',
         'all': '全部',
         'record': '记录',
+        'tags': '标签',
         'keyword': '关键字',
+        'closeOther': '关闭其他',
+        'closeAll': '关闭所有',
+        'plsInputNameProducerNumber': '请输入名称/生厂商/药械准字号',
+
 
     },
     code: {

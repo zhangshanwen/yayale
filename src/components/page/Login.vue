@@ -2,7 +2,8 @@
     <div class="login-wrap">
         <div class="ms-login">
             <div class="ms-title">{{$t('i18n.backendSystem')}}</div>
-            <el-form :model="param" :rules="rules" ref="login" label-width="0px" class="ms-content">
+            <el-form @submit.native.prevent :model="param" :rules="rules" ref="login" label-width="0px"
+                     class="ms-content">
                 <el-form-item prop="mobile">
                     <el-input v-model="param.mobile" placeholder="mobile">
                         <el-button slot="prepend" icon="el-icon-lx-people"></el-button>
@@ -16,10 +17,11 @@
                         <el-button slot="prepend" icon="el-icon-lx-lock"></el-button>
                     </el-input>
                 </el-form-item>
-                <div class="login-btn">
-                    <el-button type="primary" @keyup.enter.native="submitForm()" @click="submitForm()">{{$t('login')}}
+                <el-form-item class="login-btn">
+                    <el-button type="primary" @keyup.enter.native="submitForm()" @click="submitForm()">
+                        {{$t('i18n.login')}}
                     </el-button>
-                </div>
+                </el-form-item>
             </el-form>
         </div>
     </div>
@@ -37,8 +39,8 @@
                     password: process.env.VUE_APP_PASSWORD
                 },
                 rules: {
-                    mobile: [{ required: true, message: this.$t('plsInputMobile'), trigger: 'blur' }],
-                    password: [{ required: true, message: this.$t('plsInputPassword'), trigger: 'blur' }]
+                    mobile: [{ required: true, message: this.$t('i18n.plsInputUserNameMobile'), trigger: 'blur' }],
+                    password: [{ required: true, message: this.$t('i18n.plsInputPassword'), trigger: 'blur' }]
                 }
             };
         },
@@ -47,8 +49,7 @@
                 this.$refs.login.validate(valid => {
                     if (valid) {
                         login(this.param.mobile, this.param.password).then(async res => {
-                            localStorage.setItem('ms_mobile', this.param.mobile);
-                            console.log(res.data)
+                            localStorage.setItem('ms_user_name', res.data.user_name);
                             setToken(res.data.Authorization);
                             await this.$router.push('/users');
                         }).catch(err => {
@@ -57,6 +58,14 @@
                     }
                 });
             }
+        },
+        created() {
+            let that = this;
+            document.onkeyup = function(e) {
+                if (e.key === 'Enter') {
+                    that.submitForm();
+                }
+            };
         }
     };
 </script>

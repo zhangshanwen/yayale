@@ -58,7 +58,7 @@
         name: 'dashboard',
         data() {
             return {
-                name: localStorage.getItem('ms_mobile'),
+                name: localStorage.getItem('ms_user_name'),
                 detail: {
                     'Architecture': 'x86_64',
                     'BridgeNfIp6tables': true,
