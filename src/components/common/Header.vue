@@ -76,10 +76,12 @@
             // 用户名下拉菜单选择事件
             async handleCommand(command) {
                 if (command === 'logout') {
-                    await logout();
-                    localStorage.removeItem('ms_user_name');
-                    await removeToken();
-                    await this.$router.push('/login');
+                    await logout().finally(() => {
+                        removeToken();
+                        localStorage.removeItem('ms_user_name');
+                        this.$router.push('/login');
+                    });
+
                 } else if (command === 'changePassword') {
                     this.changePasswordVisible = true;
                 }

@@ -278,6 +278,7 @@
     import { getCategory, categoryCreate, categoryEdit, categoryDelete } from '../../api/goodsCategory';
     import { getRecord, recordCreate } from '../../api/record';
     import { FormatterTime, FormatterDate } from '../../utils/time';
+    import bus from '../common/bus';
 
     export default {
         name: 'goods',
@@ -561,6 +562,10 @@
         created() {
             this.loadCategory();
             this.loadData();
+            let that = this;
+            bus.$on('load_category', () => {
+                that.loadCategory();
+            });
         },
         computed: {
             isNewDisable() {

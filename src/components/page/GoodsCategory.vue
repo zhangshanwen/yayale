@@ -90,6 +90,7 @@
 <script>
     import { getCategory, categoryCreate, categoryEdit, categoryDelete } from '../../api/goodsCategory';
     import { FormatterTime, FormatterDate } from '../../utils/time';
+    import bus from '../common/bus';
 
     export default {
         name: 'goodsCategory',
@@ -162,6 +163,7 @@
                 categoryCreate(this.form).then((res) => {
                         this.saveVisible = false;
                         this.loadData();
+                        bus.$emit('load_category');
                     }
                 ).catch((err => {
                     this.$message.error(this.$t(`code.${err.msg}`));
@@ -173,6 +175,8 @@
                         this.saveVisible = false;
                         // 优化根据返回回填属性?因为懒得写
                         this.loadData();
+                        bus.$emit('load_category');
+
                     }
                 ).catch((err => {
                     this.$message.error(this.$t(`code.${err.msg}`));
@@ -182,6 +186,7 @@
                 categoryDelete(this.form.id).then((res) => {
                         this.delVisible = false;
                         this.loadData();
+                        bus.$emit('load_category');
                     }
                 ).catch((err => {
                     this.$message.error(this.$t(`code.${err.msg}`));

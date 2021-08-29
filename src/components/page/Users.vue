@@ -206,10 +206,8 @@
             },
             editData() {
                 userEdit(this.form).then((res) => {
-                        this.form.row.user_name = res.data.user_name;
-                        this.form.row.mobile = res.data.mobile;
-                        this.form.row.updated_time = res.data.updated_time;
                         this.saveVisible = false;
+                        this.loadData();
                     }
                 ).catch((err => {
                     this.$message.error(this.$t(`code.${err.msg}`));
