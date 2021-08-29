@@ -179,7 +179,7 @@
 
                     }
                 ).catch((err => {
-                    this.$message.error(this.$t(`code.${err.msg}`));
+                    this.$message.error(this.$t(`code.${err.msg}`));0
                 }));
             },
             deleteOne() {

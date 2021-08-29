@@ -4,6 +4,7 @@
             <el-form :model="searchForm" inline>
                 <el-form-item :label="$t('i18n.keyword')">
                     <el-input v-model="searchForm.keyword"
+                              clearable
                               :placeholder="$t('i18n.plsInputNameProducerNumber')"></el-input>
                 </el-form-item>
                 <el-form-item :label="$t('field.category_id')">

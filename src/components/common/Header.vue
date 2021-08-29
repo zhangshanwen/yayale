@@ -36,7 +36,7 @@
 
             </el-form>
 
-            <el-button @click="saveVisible = false">{{$t('i18n.cancel')}}</el-button>
+            <el-button @click="changePasswordVisible = false">{{$t('i18n.cancel')}}</el-button>
             <el-button type="primary" :disabled="changePasswordDisable" @click="onchangePassword()">
                 {{$t('i18n.confirm')}}
             </el-button>
