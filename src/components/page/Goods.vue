@@ -553,7 +553,7 @@
                 return FormatterDate(row, column, cellValue, index);
             },
             formatterState(row, column, cellValue, index) {
-                if (cellValue === -1) {
+                if (cellValue === 1) {
                     return this.$t('i18n.input');
                 } else {
                     return this.$t('i18n.output');
