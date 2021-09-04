@@ -6,8 +6,8 @@ export function getGoods(paginations, form) {
         method: 'get',
         url: `/api/goods`,
         params: {
-            page: paginations.page,
-            page_size: paginations.page_size,
+            page: paginations.pageIndex,
+            page_size: paginations.pageSize,
             sort: paginations.sort,
             order: paginations.order,
             category_id: form.category_id,

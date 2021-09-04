@@ -6,8 +6,8 @@ export function getRecord(paginations, form) {
         method: 'get',
         url: `/api/records`,
         params: {
-            page: paginations.page,
-            page_size: paginations.page_size,
+            page: paginations.pageIndex,
+            page_size: paginations.pageSize,
             sort: paginations.sort,
             order: paginations.order,
             state: form.state,
